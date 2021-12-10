@@ -1,0 +1,10 @@
+#+HUGO_BASE_DIR: ./
+
+* Emacs
+** #### ブログポスト1                                 :emacs:
+SCHEDULED: <2021-12-10 Fri>
+:PROPERTIES:
+:EXPORT_FILE_NAME: lifehack-tools-2021
+:END:
+
+本文を書く

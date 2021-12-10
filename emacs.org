@@ -1,0 +1,11 @@
+#+HUGO_BASE_DIR: ./
+#+HUGO_SECTION: emacs
+#+options: toc:nil
+
+* Emacs について
+SCHEDULED: <2021-12-10 Fri>
+:PROPERTIES:
+:EXPORT_FILE_NAME: emacs-info
+:END:
+
+これからここに自分なりにまとめたEmacsの情報を書いていきます。

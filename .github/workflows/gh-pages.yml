@@ -11,7 +11,8 @@ jobs:
     steps:
       - name: Check out
         uses: actions/checkout@v2
-        with: submodules: true
+        with:
+          submodules: true
 
       # - name: Setup emacs
       #   uses: purcell/setup-emacs@master

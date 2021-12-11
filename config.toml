@@ -1,4 +1,4 @@
-baseurl      = "https://p-snow.github.io/website/"
+baseurl      = "https://p-snow.github.io/"
 title        = "90% Hindsight"
 languageCode = "ja"
 theme        = "hello-friend-ng"

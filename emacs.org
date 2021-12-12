@@ -3,7 +3,7 @@
 :END:
 #+HUGO_BASE_DIR: ./
 #+HUGO_SECTION: emacs
-#+options: toc:t
+#+options: toc:nil
 
 * Using Emacs
 :PROPERTIES:

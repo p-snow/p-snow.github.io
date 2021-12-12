@@ -1,5 +1,8 @@
 #+HUGO_BASE_DIR: ./
 
+#+HUGO_SECTION: posts
+#+options: toc:nil
+
 * Emacs
 ** #### ブログポスト1                                 :emacs:
 SCHEDULED: <2021-12-10 Fri>
@@ -8,3 +11,7 @@ SCHEDULED: <2021-12-10 Fri>
 :END:
 
 本文を書く
+* initial blog post will come soon
+:PROPERTIES:
+:EXPORT_FILE_NAME: empty
+:END:

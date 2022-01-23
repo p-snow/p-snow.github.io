@@ -61,8 +61,7 @@ paginate     = 10
   [[menu.main]]
     identifier = "blog"
     name       = "Blog"
-    # url        = "/posts"
-    url        = "/posts/empty"
+    url        = "/posts"
 
   [[menu.main]]
     identifier = "emacs"

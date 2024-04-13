@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><title>.dot life</title><id>https://p-snow.org/feeds/tags/emacs.xml</id><subtitle>Tag: emacs</subtitle><updated>2024-04-13T11:46:31Z</updated><link href="https://p-snow.org/feeds/tags/emacs.xml" rel="self" /><link href="https://p-snow.org" /><entry><title>新たなスペルチェッカー Jinx</title><id>https://p-snow.org/新たなスペルチェッカー-jinx.html</id><author><name>p-snow</name><email>public@p-snow.org</email></author><updated>2023-12-12T18:50:00Z</updated><link href="https://p-snow.org/新たなスペルチェッカー-jinx.html" rel="alternate" /><content type="html">&lt;p&gt;
+この記事は &lt;a href=&quot;https://qiita.com/advent-calendar/2023/emacs&quot;&gt;Emacs Advent Calendar 2023&lt;/a&gt; の13日目の記事です。
+&lt;/p&gt;&lt;p&gt;
+みなさんEmacsで英文、書いてますか？
+&lt;/p&gt;&lt;p&gt;
+最近、個人的に英語での情報発信欲が高まっていて、このサイトでもいくつか英文記事を書きました。海外からいろいろレスポンスをもらえるのは楽しいです。
+英文執筆ではChatGPTの存在が頼もしく、私の稚拙な英語表現もおおむね正しく直してくれるので、間違いを恐れずガンガン書き進めていけるのがよいです。
+ChatGPT利用には主に &lt;a href=&quot;https://github.com/xenodium/chatgpt-shell&quot;&gt;chatgpt-shell&lt;/a&gt; パッケージを使っています。M-x chatgpt-shell-proofread-region すれば校閲結果を返してくれます。
+&lt;/p&gt;&lt;p&gt;
+今日は私の英文執筆時のもうひとつのミカタ、英単語スペルチェッカー Jinx を紹介してみたいとおもいます。
+&lt;/p&gt;&lt;p&gt;
+Emacs でスペルチェッカーと言うとビルトインの ispell/flyspell がありますが、個人的にはうまく使えずにいました。M-$ (ispell-word) を押しても自分が使っている completion framework (vertico) が使えなかったり、などなど。
+Jinxは動作が機敏で単語修正候補に好みの補完フレームワークが使えるので個人的に満足しています。
+&lt;/p&gt;&lt;p&gt;
+Jinxはバックエンドとして&lt;a href=&quot;https://abiword.github.io/enchant/&quot;&gt;Enchant&lt;/a&gt;を使います。Enchantは統一的なスペルチェック用APIを提供するライブラリです。その裏ではHunspellやAspellなどのスペルチェックプログラムをユーザが指定する順序で呼び出しています。
+なのでJinxを動作させるには、Jinx自身をインストール・設定することに加えて、Enchantとスペルチェッカーもインストールする必要があります。
+&lt;/p&gt;&lt;p&gt;
+以下、関連パッケージのインストール例
+&lt;/p&gt;&lt;ul class=&quot;org-ul&quot;&gt;
+&lt;li&gt;Jinxインストール時にlibenchantを使ってモジュールをコンパイルするのでpkgconf/pkg-configが必要&lt;/li&gt;
+&lt;li&gt;スペルチェッカーはEnchantでデフォルトチェッカーになっている Hunspell だけあれば事足りる印象&lt;/li&gt;
+&lt;li&gt;macOSでは&lt;a href=&quot;https://github.com/minad/jinx/issues/48&quot;&gt;フリーズするケースがある&lt;/a&gt;そうなのでご注意を&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;
+Ubuntu/Debian
+&lt;/p&gt;&lt;div class=&quot;org-src-container&quot;&gt;
+&lt;pre class=&quot;src src-shell&quot;&gt;apt install libenchant-2-dev pkgconf enchant-2 hunspell hunspell-en-us
+&lt;/pre&gt;
+&lt;/div&gt;&lt;p&gt;
+Guix
+&lt;/p&gt;&lt;div class=&quot;org-src-container&quot;&gt;
+&lt;pre class=&quot;src src-shell&quot;&gt;guix install emacs-jinx enchant hunspell hunspell-dict-en hunspell-dict-en-us
+&lt;/pre&gt;
+&lt;/div&gt;&lt;p&gt;
+Enchantは、ユーザコンフィグディレクトリ(~/.config/enchant など)にユーザ辞書(en_US.dic)などを置いて checker agnostic に設定することができます。
+&lt;/p&gt;&lt;p&gt;
+Jinxは GNU ELPA/melpa にあるので問題なくインストールできます。M-$ を ispell-word に代わって jinx-correct に割り当てています。
+&lt;/p&gt;&lt;p&gt;
+&lt;details&gt;&lt;summary&gt;Elisp Code&lt;/summary&gt;&lt;p&gt;
+&lt;/p&gt;
+&lt;div class=&quot;org-src-container&quot;&gt;
+&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(use-package jinx
+  :ensure t
+  :bind ((&amp;quot;M-$&amp;quot; . jinx-correct)
+         (&amp;quot;C-M-$&amp;quot; . jinx-languages))
+  :hook ((prog-mode conf-mode) . jinx-mode)
+  :config
+  (bind-keys :map jinx-mode-map
+             (&amp;quot;M-n&amp;quot; . jinx-next)
+             (&amp;quot;M-p&amp;quot; . jinx-previous)))
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;
+&lt;/p&gt;&lt;/details&gt;
+&lt;/p&gt;&lt;p&gt;
+これで M-$ を押せばJinxがスペルミスした単語を見つけだし修正候補を提示してくれます。スペルミスした単語にポイントを置き M-n/M-p で次/前の候補に移動してどんどん修正できます。超快適！
+&lt;/p&gt;</content></entry><entry><title>git-annex resolves the issue of org and binary file separation</title><id>https://p-snow.org/git-annex-resolves-the-issue-of-org-and-binary-file-separation.html</id><author><name>p-snow</name><email>public@p-snow.org</email></author><updated>2023-12-08T17:50:00Z</updated><link href="https://p-snow.org/git-annex-resolves-the-issue-of-org-and-binary-file-separation.html" rel="alternate" /><content type="html">&lt;p&gt;
+If you are an avid Org Mode user and a life logger like me, chances are you have your Org files stored in a Git repository. Even if you manage to represent your life in textual data, there are often cases where you should or need to utilize a more eloquent data format. Notifications from the municipality are often in PDF format, memories of your family members are typically stored as JPEG or MKV files, and the program on which your research relies is an EXE file. It is impractical to include these binary files in your Git repository. But how do we manage them in conjunction with Org files? This is where &lt;a href=&quot;https://git-annex.branchable.com/&quot;&gt;git-annex&lt;/a&gt; comes to the rescue.
+&lt;/p&gt;&lt;p&gt;
+Similar to &lt;a href=&quot;https://git-lfs.com/&quot;&gt;Git LFS&lt;/a&gt;, git-annex is designed to deal with binary data in Git repository. With git-annex, your existing Git repository can handle binary data in addition to managing text data in a familiar way. With your upgraded binary-ready Git repository, you can use hyperlinks or &lt;a href=&quot;https://orgmode.org/manual/Attachments.html&quot;&gt;org-attach&lt;/a&gt; in Org files where both the referrer (org) and the referent (binary) are in the same hierarchy.
+&lt;/p&gt;&lt;p&gt;
+Since binary files tend to increase in size, some Git repository instances may not have enough space to store all the binary files themselves. git-annex can address this issue by managing the number of copies for each binary file. For example, the Git repository on the NAS at home contains copies of all binary files, while the one in cloud storage only includes the smaller, more significant files. git-annex implements this feature by utilizing Un*x symlink mechanism. git-annex also offers a wide range of functionalities. You can explore some of them by following this &lt;a href=&quot;https://git-annex.branchable.com/walkthrough/&quot;&gt;walkthrough&lt;/a&gt;.
+&lt;/p&gt;&lt;p&gt;
+Our esteemed editor, Emacs, has a reliable package for managing git-annex within Emacs. The package's name is quite straightforward: &amp;quot;&lt;a href=&quot;https://github.com/jwiegley/git-annex-el&quot;&gt;git-annex&lt;/a&gt;&amp;quot;. With this package, you can easily manage annexed files in Dired, making it extremely user-friendly.
+&lt;/p&gt;&lt;div class=&quot;org-src-container&quot;&gt;
+&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(use-package git-annex
+  :ensure t
+  :after dired)
+&lt;/pre&gt;
+&lt;/div&gt;&lt;p&gt;
+If you are facing difficulties in finding a suitable place for your valuable yet large binary files, give git-annex a try!
+&lt;/p&gt;</content></entry><entry><title>TempEL, an Emacs package for managing templates</title><id>https://p-snow.org/tempel-an-emacs-package-for-managing-templates.html</id><author><name>p-snow</name><email>public@p-snow.org</email></author><updated>2023-11-21T00:00:00Z</updated><link href="https://p-snow.org/tempel-an-emacs-package-for-managing-templates.html" rel="alternate" /><content type="html">&lt;p&gt;
+&lt;a href=&quot;https://github.com/joaotavora/yasnippet#start-of-content&quot;&gt;YASnippet&lt;/a&gt; had been my go-to package until I came across &lt;a href=&quot;https://www.reddit.com/r/emacs/comments/yuyqqj/can_tempel_replace_yasnippet/&quot;&gt;this thread&lt;/a&gt;. Now I'm excited about yet another Emacs template system named &amp;quot;&lt;a href=&quot;https://github.com/minad/tempel&quot;&gt;TempEL&lt;/a&gt;&amp;quot;. YASnippet is undoubtedly a great package for handling snippets formatted like in TextMate. The only drawback I often encounter is that the package manages each snippet in a separate file, and acquiring the snippet format can be slightly challenging. TempEL addressed this concern with the 'tempo' format, which has been around in Emacs for decades.
+&lt;/p&gt;&lt;p&gt;
+The following two templates are used to create the same skeleton for a blog post in Org-mode, using YASnippet and TempEL as the respective tools.
+&lt;/p&gt;&lt;p&gt;
+&lt;details&gt;&lt;summary&gt;YASnippet&lt;/summary&gt;&lt;p&gt;
+&lt;/p&gt;
+&lt;div class=&quot;org-src-container&quot;&gt;
+&lt;pre class=&quot;src src-text&quot;&gt;# -*- mode: snippet -*-
+# name: blog-post
+# key: blog
+# --
+* ${1:blog_title}
+SCHEDULED: ${2:`(format-time-string &amp;quot;&amp;lt;%Y-%m-%d %a&amp;gt;&amp;quot;)`}
+:PROPERTIES:
+:EXPORT_FILE_NAME: ${3:`(format-time-string &amp;quot;%Y%m%d_%H%M&amp;quot;)`}
+:END:
+${0:`(org-expiry-insert-created)`}
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;
+&lt;/p&gt;&lt;/details&gt;
+&lt;/p&gt;&lt;p&gt;
+&lt;details&gt;&lt;summary&gt;TempEL&lt;/summary&gt;&lt;p&gt;
+&lt;/p&gt;
+&lt;div class=&quot;org-src-container&quot;&gt;
+&lt;pre class=&quot;src src-emacs-lisp&quot;&gt;(blog &amp;amp; (org-insert-heading-after-current)
+      (p &amp;quot;blog title: &amp;quot; title t) (insert title)
+      (prog1 nil (org-schedule nil (current-time)))
+      (org-entry-put (point) &amp;quot;EXPORT_FILE_NAME&amp;quot; (format-time-string &amp;quot;%Y%m%d_%H%M&amp;quot;)))
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;
+&lt;/p&gt;&lt;/details&gt;
+&lt;/p&gt;&lt;p&gt;
+As you can see, the TempEL format allows you to write templates in full Lisp data code, whereas YASnippet's format permits the use of Lisp code to a limited extent, as long as the code does not directly manipulate buffer contents. That's the point I'd like to recommend TempEL to Lispers and Emacs enthusiasts. You can see &lt;a href=&quot;https://github.com/p-snow/config/blob/main/dotfiles.org#my-tempel-templates-in-modes&quot;&gt;my TempEL templates&lt;/a&gt; being incorporated into &lt;a href=&quot;https://www.p-snow.org/config/dotfiles.html&quot;&gt;my configuration collection&lt;/a&gt;.
+&lt;/p&gt;</content></entry></feed>

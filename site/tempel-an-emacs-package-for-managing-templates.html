@@ -1,0 +1,37 @@
+<!DOCTYPE html><head><meta charset="utf-8" /><title>TempEL, an Emacs package for managing templates — .dot life</title><link rel="alternate" type="application/atom+xml" title="Atom feed" href="/feed.xml" /><link rel="stylesheet" href="/css/style.css" /></head><body><div class="container"><div class="nav"><ul><li><a href="/">.dot life</a></li><li class="fade-text"> </li><li><a href="/index.html">Blog</a></li><li><a href="/index-ja.html">日本語記事</a></li><li><a href="https://github.com/p-snow/config">My Config</a></li><li><a href="/feed.xml">RSS</a></li></ul></div><h1 class="title">TempEL, an Emacs package for managing templates</h1><div class="date">November 21, 2023</div><div class="tags">Tags:<ul><li><a href="/feeds/tags/emacs.xml">emacs</a></li></ul></div><div class="post"><p>
+<a href="https://github.com/joaotavora/yasnippet#start-of-content">YASnippet</a> had been my go-to package until I came across <a href="https://www.reddit.com/r/emacs/comments/yuyqqj/can_tempel_replace_yasnippet/">this thread</a>. Now I'm excited about yet another Emacs template system named &quot;<a href="https://github.com/minad/tempel">TempEL</a>&quot;. YASnippet is undoubtedly a great package for handling snippets formatted like in TextMate. The only drawback I often encounter is that the package manages each snippet in a separate file, and acquiring the snippet format can be slightly challenging. TempEL addressed this concern with the 'tempo' format, which has been around in Emacs for decades.
+</p><p>
+The following two templates are used to create the same skeleton for a blog post in Org-mode, using YASnippet and TempEL as the respective tools.
+</p><p>
+<details><summary>YASnippet</summary><p>
+</p>
+<div class="org-src-container">
+<pre class="src src-text"># -*- mode: snippet -*-
+# name: blog-post
+# key: blog
+# --
+* ${1:blog_title}
+SCHEDULED: ${2:`(format-time-string &quot;&lt;%Y-%m-%d %a&gt;&quot;)`}
+:PROPERTIES:
+:EXPORT_FILE_NAME: ${3:`(format-time-string &quot;%Y%m%d_%H%M&quot;)`}
+:END:
+${0:`(org-expiry-insert-created)`}
+</pre>
+</div>
+<p>
+</p></details>
+</p><p>
+<details><summary>TempEL</summary><p>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(blog &amp; (org-insert-heading-after-current)
+      (p &quot;blog title: &quot; title t) (insert title)
+      (prog1 nil (org-schedule nil (current-time)))
+      (org-entry-put (point) &quot;EXPORT_FILE_NAME&quot; (format-time-string &quot;%Y%m%d_%H%M&quot;)))
+</pre>
+</div>
+<p>
+</p></details>
+</p><p>
+As you can see, the TempEL format allows you to write templates in full Lisp data code, whereas YASnippet's format permits the use of Lisp code to a limited extent, as long as the code does not directly manipulate buffer contents. That's the point I'd like to recommend TempEL to Lispers and Emacs enthusiasts. You can see <a href="https://github.com/p-snow/config/blob/main/dotfiles.org#my-tempel-templates-in-modes">my TempEL templates</a> being incorporated into <a href="https://www.p-snow.org/config/dotfiles.html">my configuration collection</a>.
+</p></div></div></body>

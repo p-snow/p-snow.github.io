@@ -26,8 +26,8 @@
 (site #:title ".dot life"
       #:domain "p-snow.org"
       #:default-metadata
-      '((author . "p-snow")
-        (email  . "public@p-snow.org"))
+      '((author . "p-snow"))
+      #:build-directory "docs"
       #:readers (list html-reader)
       #:builders (list (blog #:theme p-snow-theme
                              #:collections `(("Recent Posts" "index.html" ,no-japanese)))

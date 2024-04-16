@@ -36,4 +36,5 @@
                        (atom-feed)
                        (atom-feeds-by-tag)
                        (static-directory "css")
-                       (static-directory "images")))
+                       (static-directory "images")
+                       (static-directory "packages")))

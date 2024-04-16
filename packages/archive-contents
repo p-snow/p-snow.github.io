@@ -1,0 +1,18 @@
+(1
+ (org-web-track .
+                [(0 0 2)
+                 ((emacs
+                   (28 1))
+                  (org
+                   (9 5))
+                  (request
+                   (0 3 0))
+                  (enlive
+                   (0 0 1)))
+                 "Web data tracking framework in org mode" single
+                 ((:authors
+                   ("p-snow" . "public@p-snow.org"))
+                  (:maintainer "p-snow" . "<public@p-snow.org>")
+                  (:keywords "org" "agenda" "web" "hypermedia")
+                  (:url . "https://github.com/p-snow/org-web-track"))]))
+

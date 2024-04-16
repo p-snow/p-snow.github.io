@@ -12,7 +12,7 @@
                  "Web data tracking framework in org mode" single
                  ((:authors
                    ("p-snow" . "public@p-snow.org"))
-                  (:maintainer "p-snow" . "<public@p-snow.org>")
+                  (:maintainer "p-snow" . "public@p-snow.org")
                   (:keywords "org" "agenda" "web" "hypermedia")
                   (:url . "https://github.com/p-snow/org-web-track"))]))
 

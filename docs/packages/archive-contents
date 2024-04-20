@@ -1,2 +1,2 @@
 (1
- (org-web-track . [(20240419 834) ((emacs (29 1)) (request (0 3 0)) (enlive (0 0 1))) "Web data tracking framework in org mode" tar ((:commit . "8e391102c532fbfea5d5d9c5570fab9b27a9a333") (:authors ("p-snow" . "public@p-snow.org")) (:maintainer "p-snow" . "public@p-snow.org") (:keywords "org" "agenda" "web" "hypermedia") (:url . "https://github.com/p-snow/org-web-track"))]))
+ (org-web-track . [(20240420 450) ((emacs (29 1)) (request (0 3 0)) (enlive (0 0 1))) "Web data tracking framework in org mode" tar ((:commit . "31ce3a46d2383871ab576a422cd8572336f94f65") (:authors ("p-snow" . "public@p-snow.org")) (:maintainer "p-snow" . "public@p-snow.org") (:keywords "org" "agenda" "web" "hypermedia") (:url . "https://github.com/p-snow/org-web-track"))]))

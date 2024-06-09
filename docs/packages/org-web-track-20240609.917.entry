@@ -1,13 +1,13 @@
 (org-web-track .
-               [(20240609 629)
+               [(20240609 917)
                 ((emacs
                   (29 1))
                  (request
                    (0 3 0))
                  (enlive
                   (0 0 1)))
-                "Web data tracking framework in org mode" tar
-                ((:commit . "4fc953c97c50a1099023cd9f8cb982b10eedce8c")
+                "Web data tracking framework in Org Mode" tar
+                ((:commit . "0bf3a6001e48be0ab3868dcf9419e7ec38d58537")
                  (:authors
                   ("p-snow" . "public@p-snow.org"))
                  (:maintainer "p-snow" . "public@p-snow.org")

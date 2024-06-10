@@ -1,0 +1,20 @@
+#+title: Org Web Track
+#+date: 2024-06-09 20:19
+#+description:
+#+tags: emacs, org, packages, web
+
+#+SETUPFILE: header
+
+There has been a small but persistent desire for years in my mind to grapple with fluctuating data from the web, such as the price of items on my wish list, scores for my social media status, or ratings for my book on Amazon. One day, the desire compelled me to create a personal data management system with Python and PostgreSQL, and another day it urged me to take advantage of [[https://n8n.io/][n8n]], the web workflow automation tool. Unfortunately, neither attempt was successful.
+
+Finally, I encountered Emacs and Org Mode. Through my experience with Org Mode, I have learned that a data management system for personal use should not be as elaborate and versatile as using a DBMS, but rather more concise and straightforward. As a result of trial and error, the desire materialized as [[https://github.com/p-snow/org-web-track][org-web-track]], my initial Emacs package now [[https://melpa.org/#/org-web-track][available on MELPA]].
+
+org-web-track provides a management framework for data that varies over time on the web, such as production prices. With this package, you can retrieve, overview, and utilize the data. Below are the main features.
+
+- Supports web APIs as well as static pages.
+- The data to track can be designated by CSS selector.
+- Tracking items can be viewed collectively in an Org table with their updated values.
+- Past values are stored and can be utilized for tasks such as creating graphs.
+- Further extension examples are in the manual, such as email notifications when a value meets a condition.
+
+Please refer to [[https://github.com/p-snow/org-web-track/blob/main/README.org][the manual]] for more details. Enjoy!

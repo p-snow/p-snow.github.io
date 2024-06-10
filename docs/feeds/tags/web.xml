@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><title>.dot life</title><id>https://p-snow.org/feeds/tags/web.xml</id><subtitle>Tag: web</subtitle><updated>2024-06-10T21:32:39Z</updated><link href="https://p-snow.org/feeds/tags/web.xml" rel="self" /><link href="https://p-snow.org" /><entry><title>Org Web Track</title><id>https://p-snow.org/org-web-track.html</id><author><name>p-snow</name></author><updated>2024-06-09T20:19:00Z</updated><link href="https://p-snow.org/org-web-track.html" rel="alternate" /><content type="html">&lt;p&gt;
+There has been a small but persistent desire for years in my mind to grapple with fluctuating data from the web, such as the price of items on my wish list, scores for my social media status, or ratings for my book on Amazon. One day, the desire compelled me to create a personal data management system with Python and PostgreSQL, and another day it urged me to take advantage of &lt;a href=&quot;https://n8n.io/&quot;&gt;n8n&lt;/a&gt;, the web workflow automation tool. Unfortunately, neither attempt was successful.
+&lt;/p&gt;&lt;p&gt;
+Finally, I encountered Emacs and Org Mode. Through my experience with Org Mode, I have learned that a data management system for personal use should not be as elaborate and versatile as using a DBMS, but rather more concise and straightforward. As a result of trial and error, the desire materialized as &lt;a href=&quot;https://github.com/p-snow/org-web-track&quot;&gt;org-web-track&lt;/a&gt;, my initial Emacs package now &lt;a href=&quot;https://melpa.org/#/org-web-track&quot;&gt;available on MELPA&lt;/a&gt;.
+&lt;/p&gt;&lt;p&gt;
+org-web-track provides a management framework for data that varies over time on the web, such as production prices. With this package, you can retrieve, overview, and utilize the data. Below are the main features.
+&lt;/p&gt;&lt;ul class=&quot;org-ul&quot;&gt;
+&lt;li&gt;Supports web APIs as well as static pages.&lt;/li&gt;
+&lt;li&gt;The data to track can be designated by CSS selector.&lt;/li&gt;
+&lt;li&gt;Tracking items can be viewed collectively in an Org table with their updated values.&lt;/li&gt;
+&lt;li&gt;Past values are stored and can be utilized for tasks such as creating graphs.&lt;/li&gt;
+&lt;li&gt;Further extension examples are in the manual, such as email notifications when a value meets a condition.&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;
+Please refer to &lt;a href=&quot;https://github.com/p-snow/org-web-track/blob/main/README.org&quot;&gt;the manual&lt;/a&gt; for more details. Enjoy!
+&lt;/p&gt;</content></entry></feed>

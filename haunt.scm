@@ -23,7 +23,7 @@
              (not (member "japanese" (post-tags p))))
            posts)))
 
-(site #:title ".dot life"
+(site #:title "dot life"
       #:domain "p-snow.org"
       #:default-metadata
       '((author . "p-snow"))
@@ -31,8 +31,6 @@
       #:readers (list html-reader)
       #:builders (list (blog #:theme p-snow-theme
                              #:collections `(("Recent Posts" "index.html" ,no-japanese)))
-                       (blog #:theme p-snow-theme
-                             #:collections `(("最新の記事" "index-ja.html" ,japanese)))
                        (atom-feed)
                        (atom-feeds-by-tag)
                        (static-directory "css")

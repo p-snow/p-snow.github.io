@@ -37,7 +37,6 @@
                    (div (@ (class "nav"))
                         (ul (li ,(link (site-title site) "/"))
                             (li (@ (class "fade-text")) " ")
-                            (li ,(link "Blog" "/index.html"))
                             (li ,(link "My Config" "https://github.com/p-snow/config"))
                             (li ,(link "RSS" "/feed.xml"))))
                    ,body))))

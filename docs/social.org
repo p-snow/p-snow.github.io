@@ -1,0 +1,3 @@
+#+TITLE: p-snow @ Org Social
+#+NICK: p-snow
+#+DESCRIPTION: An avid Emacs/Org user from Japna

@@ -1,3 +1,19 @@
 #+TITLE: p-snow @ Org Social
 #+NICK: p-snow
 #+DESCRIPTION: An avid Emacs/Org user from Japna
+#+LINK: https://p-snow.org
+
+* Posts
+
+** Initail post
+:PROPERTIES:
+:ID: 2025-11-26T17:38:10+0900
+:TAGS:
+:CLIENT: org-social.el
+:MOOD:
+:END:
+
+日本からこんにちは
+
+This is my initial org-social post from Japan.
+It's golden hour in Japan, and people are bracing for the coming winter.

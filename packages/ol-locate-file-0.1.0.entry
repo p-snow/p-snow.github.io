@@ -1,0 +1,9 @@
+(ol-locate-file
+ . [(0 1 0) ((emacs (30 1)) (org (9 3))) "Locate-based file links for Org mode"
+    tar
+    ((:url . "https://github.com/p-snow/ol-locate-file")
+     (:commit . "7cd872cd2352c5a5773342bc74d9be867244f5ac")
+     (:revdesc . "7cd872cd2352") (:keywords "hypermedia" "convenience")
+     (:authors ("p-snow" . "public@p-snow.org"))
+     (:maintainers ("p-snow" . "public@p-snow.org"))
+     (:maintainer "p-snow" . "public@p-snow.org"))])
